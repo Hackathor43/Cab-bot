@@ -29,6 +29,7 @@ if not creds_json:
     raise ValueError("Google credentials not found in environment variables")
     
 creds_dict = json.loads(creds_json)
+print(creds_dict)
 creds = Credentials.from_service_account_info(creds_dict, scopes=scopes)
 client = gspread.authorize(creds)
 sheet = client.open_by_key(SHEET_KEY).sheet1

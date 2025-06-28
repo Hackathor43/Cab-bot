@@ -23,7 +23,12 @@ scopes = [
     'https://www.googleapis.com/auth/spreadsheets',
     'https://www.googleapis.com/auth/drive'
 ]
-creds = Credentials.from_service_account_file(CREDS_FILE, scopes=scopes)
+creds_json = os.getenv('GOOGLE_CREDENTIALS_JSON')
+if not creds_json:
+    raise ValueError("Google credentials not found in environment variables")
+    
+creds_dict = json.loads(creds_json)
+creds = Credentials.from_service_account_info(creds_dict, scopes=SCOPES)
 client = gspread.authorize(creds)
 sheet = client.open_by_key(SHEET_KEY).sheet1
 

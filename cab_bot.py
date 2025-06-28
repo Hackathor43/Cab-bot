@@ -1,3 +1,5 @@
+import os
+import json
 import logging
 from datetime import datetime
 from telegram import Update
@@ -11,7 +13,6 @@ from telegram.ext import (
 )
 import gspread
 from google.oauth2.service_account import Credentials
-
 # Configuration
 BOT_TOKEN = "7672667666:AAGBkHf6VSFvfqLObKkavkZUxnDDe94Wgco"
 SHEET_NAME = "Cab_Earnings"
